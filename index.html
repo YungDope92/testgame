@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML5 Game</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script>
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+        const context = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const game = {
+            player: { x: 50, y: 50, size: 20, color: 'blue' },
+            update: function() {
+                // Update game logic here
+            },
+            draw: function() {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.fillStyle = this.player.color;
+                context.fillRect(this.player.x, this.player.y, this.player.size, this.player.size);
+            }
+        };
+
+        function gameLoop() {
+            game.update();
+            game.draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
